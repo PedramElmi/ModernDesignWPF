@@ -4,12 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModernDesignWPF"
+        xmlns:viewModel="clr-namespace:ModernDesignWPF.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="920"
         WindowStyle="None"
-        ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True" Icon="Images/HumanFace.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    
     <Border Background="#272537" CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,6 +26,18 @@
                 <RowDefinition Height="75"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
+            <TextBlock Text="ElContractor" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22" FontFamily="/Fonts/#Poppins"/>
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Home" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" IsChecked="True" Command="{Binding HomeViewCommand}"/>
+                <RadioButton Content="Discovery" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}" Command="{Binding DiscoveryViewCommand}"/>
+                <RadioButton Content="Featured" Height="50" Foreground="White" FontSize="14" Style="{StaticResource MenuButtonTheme}"/>
+            </StackPanel>
+
+            <TextBox Width="250" Height="40" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5" Grid.Column="1" Style="{StaticResource ModernTextBoxTheme}"/>
+
+            <ContentControl Grid.Row="1" Grid.Column="1" Margin="10" Content="{Binding CurrentView}"/>
+
         </Grid>
     </Border>
 </Window>
